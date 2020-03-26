@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <dimen name = "cardViewHeight">200dp</dimen>
+    <dimen name = "cardViewHeight">50dp</dimen>
+    <dimen name = "cardViewWidth">150dp</dimen>
+    <dimen name = "pastryListTextSize">30sp</dimen>
 
 </resources>

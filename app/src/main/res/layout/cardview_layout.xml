@@ -1,19 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
 
+    android:id="@+id/cv_pastry"
     android:layout_width="match_parent"
     android:layout_height="@dimen/cardViewHeight"
-    card_view:cardElevation="2dp"
+    android:layout_centerInParent="true"
+    android:layout_centerHorizontal="true"
+    android:layout_gravity="center_horizontal"
+    android:layout_margin="4dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@color/cardViewBackground"
     card_view:cardCornerRadius="4dp"
-    android:id="@+id/cv_pastry"
-    >
+    card_view:cardElevation="5dp">
 
         <TextView
+            android:id="@+id/txt_pastry"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/txt_pastry"/>
+            android:layout_height="match_parent"
+            android:background="@color/cardViewBackground"
+            android:textAlignment="center"
+            android:textSize="@dimen/pastryListTextSize" />
 
-    
+
 </androidx.cardview.widget.CardView>

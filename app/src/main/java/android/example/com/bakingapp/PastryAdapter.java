@@ -1,6 +1,7 @@
 package android.example.com.bakingapp;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,10 +20,17 @@ class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder> {
 
     private ArrayList<String> pastryCaption;
 
+  final private Listener mListener;
 
-    public PastryAdapter(ArrayList<String> pastryCaption) {
+    interface Listener{
+        void onClick (int position);
+
+
+    }
+
+    public PastryAdapter(ArrayList<String> pastryCaption, Listener listener) {
         this.pastryCaption = pastryCaption;
-
+        mListener = listener;
     }
 
     @NonNull
@@ -36,11 +44,12 @@ class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
 
         CardView cardView = holder.cardView;
         TextView textView = cardView.findViewById(R.id.txt_pastry);
         textView.setText(pastryCaption.get(position));
+
     }
 
     @Override
@@ -49,18 +58,24 @@ class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder> {
     }
 
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
     CardView cardView;
 
     public ViewHolder(CardView view){
         super (view);
-
+        view.setOnClickListener(this);
         cardView = view;
 
 
     }
 
+        @Override
+        public void onClick(View v) {
+            int clickedPosition = getAdapterPosition();
+            mListener.onClick(clickedPosition);
+        }
     }
 
 

@@ -1,6 +1,8 @@
 package android.example.com.bakingapp.NetworkTools;
 
-public class Ingredients {
+import java.io.Serializable;
+
+public class Ingredients implements Serializable {
 
     private float quantity;
     private String measure;

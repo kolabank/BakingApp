@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.example.com.bakingapp.NetworkTools.Api;
 import android.example.com.bakingapp.NetworkTools.Ingredients;
 import android.example.com.bakingapp.NetworkTools.RecipeClass;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,12 +24,10 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements PastryAdapter.Listener, Serializable{
 
     RecyclerView rv_pastry;
-
-    List<RecipeClass> recipe1;
-
+    ArrayList<ArrayList<Ingredients>> ingredientsArray = new ArrayList<ArrayList<Ingredients>>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,11 +66,12 @@ public class MainActivity extends AppCompatActivity {
 
                     for (int i=0; i<recipes.size();i++){
                       recipeName.add(recipes.get(i).getName());
+                      ingredientsArray.add (recipes.get(i).getIngredients());
+                    //  Log.i("tag", ingredientSArray.get(i).getIngredient());
+
                     }
 
-
-                    PastryAdapter pastryAdapter = new PastryAdapter(recipeName);
-
+                    PastryAdapter pastryAdapter = new PastryAdapter(recipeName, MainActivity.this);
                     rv_pastry.setAdapter(pastryAdapter);
                     LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                     rv_pastry.setLayoutManager(layoutManager);
@@ -88,6 +89,16 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+    @Override
+    public void onClick(int position) {
 
+        Toast.makeText(getApplicationContext(), position+"", Toast.LENGTH_LONG).show();
 
+        Intent intent = new Intent(MainActivity.this, DetailedActivity.class);
+     //   Bundle args = new Bundle();
+    //    args.putSerializable("ArrayList", (Serializable) ingredientsArray.get(position));
+           intent.putExtra("Position", position);
+           startActivity (intent);
+
+    }
 }
