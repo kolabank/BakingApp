@@ -1,8 +1,9 @@
 package android.example.com.bakingapp.NetworkTools;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class RecipeClass {
+public class RecipeClass implements Serializable {
 
     private int id;
     private String name;

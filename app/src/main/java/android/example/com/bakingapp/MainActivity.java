@@ -27,6 +27,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity implements PastryAdapter.Listener, Serializable{
 
     RecyclerView rv_pastry;
+    public static List<RecipeClass> recipe1 = new ArrayList<RecipeClass>();
+    ArrayList<String> recipeName = new ArrayList<String>();
     ArrayList<ArrayList<Ingredients>> ingredientsArray = new ArrayList<ArrayList<Ingredients>>();
 
     @Override
@@ -59,16 +61,15 @@ public class MainActivity extends AppCompatActivity implements PastryAdapter.Lis
 
                 //List of JSON Data
                     List<RecipeClass>  recipes = response.body();
-
+                    recipe1 = recipes;
                     rv_pastry = findViewById(R.id.rv_pastry);
-                    ArrayList recipeName = new ArrayList();
-
+                 //   ArrayList recipeName = new ArrayList();
 
                     for (int i=0; i<recipes.size();i++){
                       recipeName.add(recipes.get(i).getName());
                       ingredientsArray.add (recipes.get(i).getIngredients());
-                    //  Log.i("tag", ingredientSArray.get(i).getIngredient());
 
+                    //Log.i("tag", ingredientSArray.get(i).getIngredient());
                     }
 
                     PastryAdapter pastryAdapter = new PastryAdapter(recipeName, MainActivity.this);
@@ -93,12 +94,11 @@ public class MainActivity extends AppCompatActivity implements PastryAdapter.Lis
     public void onClick(int position) {
 
         Toast.makeText(getApplicationContext(), position+"", Toast.LENGTH_LONG).show();
+        //ingredientsArray.get(position).get(position);
 
         Intent intent = new Intent(MainActivity.this, DetailedActivity.class);
-     //   Bundle args = new Bundle();
-    //    args.putSerializable("ArrayList", (Serializable) ingredientsArray.get(position));
-           intent.putExtra("Position", position);
-           startActivity (intent);
+        intent.putExtra("pass", position);
+        startActivity (intent);
 
     }
 }
