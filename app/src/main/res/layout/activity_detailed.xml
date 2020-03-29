@@ -10,13 +10,21 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/ingredients_display"/>
+        android:text="@string/ingredients_display"
+        android:textSize="@dimen/ingredientTextSize"
+        android:textStyle="bold"
+        android:paddingLeft="15dp"/>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:id="@+id/ingredients_container"
 
         />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/recipe_container"/>
 
 </LinearLayout>

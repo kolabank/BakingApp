@@ -20,7 +20,7 @@ public class IngredientsFragment extends Fragment {
 
     ListView txtIngredientsList;
     ArrayList<String> detailIngredients;
-    int noOfIngredients;
+
     //Empty constructor of fragment
     public IngredientsFragment (){
 
@@ -40,13 +40,8 @@ public class IngredientsFragment extends Fragment {
 
         return rootView;
 
-
     }
 
-    void setNoOfIngredients (int ingredientsNo){
-
-        noOfIngredients = ingredientsNo;
-    }
 
     void setTxtIngredients (ArrayList ingredientsText){
 

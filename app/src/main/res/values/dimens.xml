@@ -3,6 +3,7 @@
 
     <dimen name = "cardViewHeight">50dp</dimen>
     <dimen name = "cardViewWidth">150dp</dimen>
-    <dimen name = "pastryListTextSize">30sp</dimen>
+    <dimen name = "pastryListTextSize">20sp</dimen>
+    <dimen name="ingredientTextSize">25sp</dimen>
 
 </resources>
