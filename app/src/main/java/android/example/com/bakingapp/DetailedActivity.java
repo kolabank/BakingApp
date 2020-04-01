@@ -15,7 +15,10 @@ import java.util.List;
 public class DetailedActivity extends AppCompatActivity {
 
     ArrayList <Ingredients> ingArray;
-    ArrayList<Steps> stepsArray;
+    public static ArrayList<Steps> stepsArray;
+
+
+
     ArrayList<String> ingLine = new ArrayList<String>(  );
     ArrayList<String> stepLine = new ArrayList<String>();
 
@@ -78,8 +81,15 @@ public class DetailedActivity extends AppCompatActivity {
             stepLine.add(shortDescription);
         }
 
+
+
         stepsFragment.setDetailRecipes(stepLine);
 
+    }
+
+
+    public ArrayList<Steps> getStepsArray() {
+        return stepsArray;
     }
 
 

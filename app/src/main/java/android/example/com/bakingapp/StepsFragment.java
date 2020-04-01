@@ -1,5 +1,6 @@
 package android.example.com.bakingapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,5 +57,9 @@ public class StepsFragment extends Fragment implements PastryAdapter.Listener{
 
         Toast.makeText(getActivity(), position+"", Toast.LENGTH_LONG).show();
 
+        Intent intent = new Intent(getContext(), PlayerActivity.class);
+        intent.putExtra("position", position);
+
+        startActivity(intent);
     }
 }
