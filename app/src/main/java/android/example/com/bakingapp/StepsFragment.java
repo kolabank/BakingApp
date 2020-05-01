@@ -35,7 +35,7 @@ public class StepsFragment extends Fragment implements PastryAdapter.Listener{
        rv_Recipe = view.findViewById(R.id.rv_recipe);
 
 
-        PastryAdapter pastryAdapter = new PastryAdapter(detailRecipes, this);
+        PastryAdapter pastryAdapter = new PastryAdapter(detailRecipes,this);
         rv_Recipe.setAdapter(pastryAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rv_Recipe.setLayoutManager(layoutManager);
@@ -52,14 +52,17 @@ public class StepsFragment extends Fragment implements PastryAdapter.Listener{
 
     }
 
-    @Override
-    public void onClick(int position) {
+   @Override
+  public void onClick(int position) {
 
         Toast.makeText(getActivity(), position+"", Toast.LENGTH_LONG).show();
 
-        Intent intent = new Intent(getContext(), PlayerActivity.class);
+      Intent intent = new Intent(getContext(), PlayerActivity.class);
         intent.putExtra("position", position);
 
-        startActivity(intent);
-    }
+
+    startActivity(intent);
+  }
+
+
 }

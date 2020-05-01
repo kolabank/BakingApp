@@ -1,5 +1,6 @@
 package android.example.com.bakingapp;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,8 @@ class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder> {
     private ArrayList<String> pastryCaption;
 
   final private Listener mListener;
+
+  private Context context;
 
     interface Listener{
         void onClick (int position);
@@ -67,7 +70,6 @@ class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder> {
         super (view);
         view.setOnClickListener(this);
         cardView = view;
-
 
     }
 

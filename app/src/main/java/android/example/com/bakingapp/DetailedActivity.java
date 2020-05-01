@@ -8,19 +8,22 @@ import android.example.com.bakingapp.NetworkTools.Ingredients;
 import android.example.com.bakingapp.NetworkTools.RecipeClass;
 import android.example.com.bakingapp.NetworkTools.Steps;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class DetailedActivity extends AppCompatActivity {
+public class DetailedActivity extends AppCompatActivity implements PastryAdapter.Listener{
 
     ArrayList <Ingredients> ingArray;
     public static ArrayList<Steps> stepsArray;
-
+    private boolean twoPane;
 
 
     ArrayList<String> ingLine = new ArrayList<String>(  );
     ArrayList<String> stepLine = new ArrayList<String>();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +42,7 @@ public class DetailedActivity extends AppCompatActivity {
         .commit();
 
         List<RecipeClass> recipeDetail = MainActivity.recipe1;
+
         Intent intent = getIntent();
         int recipeReference= intent.getIntExtra("pass", 0);
 
@@ -60,9 +64,8 @@ public class DetailedActivity extends AppCompatActivity {
 
         ingredientsFragment.setTxtIngredients(ingLine);
 
+
         //This segment takes care of the Recipe Fragment
-
-
         StepsFragment stepsFragment = new StepsFragment();
 
         FragmentManager fragmentManagerSteps = getSupportFragmentManager();
@@ -81,9 +84,37 @@ public class DetailedActivity extends AppCompatActivity {
             stepLine.add(shortDescription);
         }
 
-
-
         stepsFragment.setDetailRecipes(stepLine);
+
+
+
+        if (findViewById(R.id.twoPaneLinearLayout)!=null){
+
+            PlayerFragment playerFragment = new PlayerFragment();
+            FragmentManager fragmentManagerPlayer = getSupportFragmentManager();
+            fragmentManagerPlayer.beginTransaction().add(R.id.player_container, playerFragment)
+                    .commit();
+
+            ArrayList<Steps> steps= DetailedActivity.stepsArray;
+            String videoString = steps.get(recipeReference).getVideoURL();
+
+            playerFragment.setStringUri(videoString);
+
+
+        }
+
+    }
+
+    @Override
+    public void onClick(int position) {
+
+        Toast.makeText(this, position+"", Toast.LENGTH_LONG).show();
+
+        Intent playIntent = new Intent(this, PlayerActivity.class);
+        playIntent.putExtra("position", position);
+
+
+        startActivity(playIntent);
 
     }
 
