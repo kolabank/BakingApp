@@ -31,7 +31,6 @@ public class DetailedActivity extends AppCompatActivity implements PastryAdapter
         setContentView(R.layout.activity_detailed);
 
 
-
         //This segment takes care of the Ingredients Fragment
 
         IngredientsFragment ingredientsFragment = new IngredientsFragment();
@@ -65,6 +64,8 @@ public class DetailedActivity extends AppCompatActivity implements PastryAdapter
         ingredientsFragment.setTxtIngredients(ingLine);
 
 
+
+
         //This segment takes care of the Recipe Fragment
         StepsFragment stepsFragment = new StepsFragment();
 
@@ -88,7 +89,13 @@ public class DetailedActivity extends AppCompatActivity implements PastryAdapter
 
 
 
-        if (findViewById(R.id.twoPaneLinearLayout)!=null){
+
+    }
+
+    @Override
+    public void onClick(int position) {
+
+        if (findViewById(R.id.twoPaneLinearLayout) != null) {
 
             PlayerFragment playerFragment = new PlayerFragment();
             FragmentManager fragmentManagerPlayer = getSupportFragmentManager();
@@ -96,25 +103,22 @@ public class DetailedActivity extends AppCompatActivity implements PastryAdapter
                     .commit();
 
             ArrayList<Steps> steps= DetailedActivity.stepsArray;
-            String videoString = steps.get(recipeReference).getVideoURL();
+            String videoString = steps.get(position).getVideoURL();
 
             playerFragment.setStringUri(videoString);
 
 
         }
 
-    }
+        else{
 
-    @Override
-    public void onClick(int position) {
+            Toast.makeText(this, position + "", Toast.LENGTH_LONG).show();
+            Intent playIntent = new Intent(this, PlayerActivity.class);
+            playIntent.putExtra("position", position);
 
-        Toast.makeText(this, position+"", Toast.LENGTH_LONG).show();
+            startActivity(playIntent);
 
-        Intent playIntent = new Intent(this, PlayerActivity.class);
-        playIntent.putExtra("position", position);
-
-
-        startActivity(playIntent);
+        }
 
     }
 

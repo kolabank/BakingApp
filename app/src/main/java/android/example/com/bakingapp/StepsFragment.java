@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
-public class StepsFragment extends Fragment implements PastryAdapter.Listener{
+public class StepsFragment extends Fragment {
 
     RecyclerView rv_Recipe;
     ArrayList<String> detailRecipes;
@@ -35,7 +35,7 @@ public class StepsFragment extends Fragment implements PastryAdapter.Listener{
        rv_Recipe = view.findViewById(R.id.rv_recipe);
 
 
-        PastryAdapter pastryAdapter = new PastryAdapter(detailRecipes,this);
+        PastryAdapter pastryAdapter = new PastryAdapter(detailRecipes,getActivity());
         rv_Recipe.setAdapter(pastryAdapter);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rv_Recipe.setLayoutManager(layoutManager);
@@ -52,7 +52,7 @@ public class StepsFragment extends Fragment implements PastryAdapter.Listener{
 
     }
 
-   @Override
+ /*  @Override
   public void onClick(int position) {
 
         Toast.makeText(getActivity(), position+"", Toast.LENGTH_LONG).show();
@@ -63,6 +63,6 @@ public class StepsFragment extends Fragment implements PastryAdapter.Listener{
 
     startActivity(intent);
   }
-
+*/
 
 }

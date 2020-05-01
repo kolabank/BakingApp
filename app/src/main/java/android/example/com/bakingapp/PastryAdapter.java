@@ -21,19 +21,22 @@ class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder> {
 
     private ArrayList<String> pastryCaption;
 
-  final private Listener mListener;
+  //final private Listener mListener;
+    Listener listener;
 
   private Context context;
 
-    interface Listener{
+   public interface Listener{
         void onClick (int position);
 
 
     }
 
-    public PastryAdapter(ArrayList<String> pastryCaption, Listener listener) {
+    public PastryAdapter(ArrayList<String> pastryCaption, Context context) {
         this.pastryCaption = pastryCaption;
-        mListener = listener;
+
+        listener = (Listener) context;
+     //   mListener = listener;
     }
 
     @NonNull
@@ -62,22 +65,33 @@ class PastryAdapter extends RecyclerView.Adapter<PastryAdapter.ViewHolder> {
 
 
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
+    public class ViewHolder extends RecyclerView.ViewHolder {
 
     CardView cardView;
 
     public ViewHolder(CardView view){
         super (view);
-        view.setOnClickListener(this);
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                listener.onClick(getAdapterPosition());
+
+            }
+        });
         cardView = view;
 
     }
 
-        @Override
+  /*      @Override
         public void onClick(View v) {
             int clickedPosition = getAdapterPosition();
-            mListener.onClick(clickedPosition);
+          //  mListener.onClick(clickedPosition);
         }
+
+       */
+
+
     }
 
 
